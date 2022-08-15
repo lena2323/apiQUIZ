@@ -1,15 +1,15 @@
-var allQuestions 
+var allQuestions; 
 
-var url = "https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5&difficulty=easy&tags=actors";
+var url;
 
-fetch("questions.json")
+fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5&difficulty=easy&tags=actors")
     .then(res => {
         return res.json();
     })
     .then(allQuestions => {
         console.log(allQuestions);
-        questions = allQuestions;
-        startQuiz();
+        //questions = allQuestions;
+       // startQuiz();
     }) 
 
     .catch(err => {
