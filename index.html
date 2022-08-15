@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPN quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    
+
+    <div id="quiz"></div>
+
+    <div class="startQuizContainer show hide" id="startQuizContainer">
+    
+
+        <div class="containerForSnakeBorderButton">
+            <a href="#quiz" id="startQuizButton" onclick="startQuiz()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <p id="startQuizButtonToChange">Are you ready to rock?</p>
+            </a>
+        </div>
+
+        
+        <div id="resultContainer" class="hide resultContainer">
+            <p id="resultText"> Your result is:</p>
+            <p id="resultMessage"></p>
+        </div>
+
+    </div>
+
+    <div class="containerForEverything hide" id="containerForEverything">
+
+        <div id="count"></div>
+
+        <div id="questionInTheQuiz" class="question">Question</div>
+
+
+        <div class="allButtonsContainer" id="allButtonsContainer">
+            <button class="allButtons " id="answerButton0" onclick="clickedAnswer(this.id)"></a></button>
+            <button class="allButtons " id="answerButton1" onclick="clickedAnswer(this.id)"></button>
+            <button class="allButtons " id="answerButton2" onclick="clickedAnswer(this.id)"></button>
+            <button class="allButtons " id="answerButton3" onclick="clickedAnswer(this.id)"></button>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="nextQuestionContainer hide" id="nextQuestionContainer">
+
+    <a href="#quiz" id="nextQuestionButton" onclick="nextQuestion()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Next question
+    </a>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
