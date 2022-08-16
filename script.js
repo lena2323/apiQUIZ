@@ -1,30 +1,42 @@
-var allQuestions; 
+// var allQuestions; 
 
-var url;
+// var url;
 
-fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5&difficulty=easy&tags=actors")
-    .then(res => {
-        return res.json();
-    })
-    .then(allQuestions => {
-        console.log(allQuestions);
-        //questions = allQuestions;
-       // startQuiz();
-    }) 
-
-    .catch(err => {
-        console.log(err);
-    })
+let difficulty;
 
 
 
 
+function easyFunction(){
+    difficulty = "&difficulty=easy";
+    fetchAPI();
+   } 
+   
+   function mediumFunction(){
+    difficulty = "&difficulty=medium";
+    fetchAPI();
+   } 
+   
+   function hardFunction(){
+    difficulty = "&difficulty=hard";
+    fetchAPI();
+   } 
+   
+
+   async function fetchAPI(){
+    let response = await fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5" + difficulty + "&tags=actors");
+    console.log(response);
+
+    let allQuestions = await response.json();
+    console.log(allQuestions);
+
+
+    
+}
 
 
 
-
-
-
+/*
 
 function getSiblings(e) {
     let siblings = []; 
@@ -235,5 +247,5 @@ function timer(){
 
 
 
-
+*/
 
