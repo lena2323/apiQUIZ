@@ -4,10 +4,26 @@ let containerForEverything =  document.getElementById("containerForEverything");
 let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 
 
+let configuredCount = 10;
 
+let currentQuestionIndex = 0;
 
+var count = configuredCount;
+
+let DATAVAR;
 
 let url;
+var questionTimerInterval;
+
+
+
+let startQuizButton = document.getElementById("startQuizButton"); 
+
+
+let nextQuestionContainer = document.getElementById("nextQuestionContainer");
+
+let nextQuestionButton = document.getElementById("nextQuestionButton");
+
 
 
 async function startQuiz(){
@@ -16,9 +32,61 @@ async function startQuiz(){
     console.log(data[0].question);
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none";
-    questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
+    DATAVAR = (questionInTheQuiz.innerHTML = `${data[0].question}`)
 
 
+
+    document.getElementById('count').innerHTML=configuredCount;
+    currentQuestionIndex++;
+
+    if(currentQuestionIndex == data.length)
+        resetQuiz();
+    else{
+        
+        DATAVAR;
+     //   displayAnswers(index);
+
+        nextQuestionButton.addEventListener('click',() =>{
+            nextQuestionContainer.style.display = "none";
+            console.log(DATAVAR)
+        });           
+        }
+        timer();
+    }
+
+
+
+  
+  
+
+
+
+
+
+function timer(){
+    count = configuredCount;
+    questionTimerInterval = setInterval(function(){                
+
+        if (count > 0) {
+            count--;
+            nextQuestionContainer.style.display = "none";
+            document.getElementById('count').innerHTML=count;
+        }
+        else {
+            clearInterval(questionTimerInterval);
+            nextQuestionContainer.style.display = "flex";
+
+
+         /*   answerButton0.disabled = true;
+            answerButton1.disabled = true;
+            answerButton2.disabled = true;
+            answerButton3.disabled = true;*/
+
+            count = configuredCount;
+        }      
+        
+    },
+    1000);
 }
 
 
@@ -44,42 +112,13 @@ function easyFunction(){
     
    
 
-/*
-function displayQuestion(index){
-
-    document.getElementById('count').innerHTML=configuredCount;
-    
-    if(currentQuestionIndex == allQuestions.length)
-        resetQuiz();
-    else{
-        questionInTheQuiz.innerText = allQuestions[index].question;
-
-        displayAnswers(index);
-        currentQuestionIndex++;
-
-        timer();
-    }
-
-}*/
-
 
 /*
-let configuredCount = 10;
-
-let startQuizButton = document.getElementById("startQuizButton"); 
-
-
-let nextQuestionContainer = document.getElementById("nextQuestionContainer");
-
-let nextQuestionButton = document.getElementById("nextQuestionButton");
-
-
 let answerButton0 = document.getElementById("answerButton0");
 let answerButton1 = document.getElementById("answerButton1");
 let answerButton2 = document.getElementById("answerButton2");
 let answerButton3 = document.getElementById("answerButton3");
 
-let currentQuestionIndex = 0;
 
 let correctAnswerTotal = 0;
 let wrongAnswerTotal = 0;
@@ -92,7 +131,6 @@ let resultMessage = document.getElementById("resultMessage");
 
 let startQuizButtonToChange = document.getElementById("startQuizButtonToChange");
 
-var questionTimerInterval;
 
 function resetQuiz() {
 
@@ -146,13 +184,6 @@ function displayAnswers(index) {
 
 
 
-function nextQuestion() {
-    displayQuestion(currentQuestionIndex);
-    nextQuestionContainer.style.display = "none";
-}
-
-
-var count = configuredCount;
 
 function clickedAnswer(id) {
     var button = document.getElementById(id);
@@ -185,33 +216,6 @@ function clickedAnswer(id) {
     nextQuestionContainer.style.display = "flex";
 
 }
-
-function timer(){
-    count = configuredCount;
-    questionTimerInterval = setInterval(function(){                
-
-        if (count > 0) {
-            count--;
-            nextQuestionContainer.style.display = "none";
-            document.getElementById('count').innerHTML=count;
-        }
-        else {
-            clearInterval(questionTimerInterval);
-            nextQuestionContainer.style.display = "flex";
-
-
-            answerButton0.disabled = true;
-            answerButton1.disabled = true;
-            answerButton2.disabled = true;
-            answerButton3.disabled = true;
-
-            count = configuredCount;
-        }      
-        
-    },
-    1000);
-}
-
 
 
 
