@@ -1,70 +1,86 @@
-// var allQuestions; 
 
-// var url;
+let startQuizContainer = document.getElementById("startQuizContainer");
+let containerForEverything =  document.getElementById("containerForEverything"); 
+let questionInTheQuiz = document.getElementById("questionInTheQuiz");
+
+
+
 
 
 let url;
 
 function easyFunction(){
-    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=easy"
+    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy"
     fetchAPI();
+    startQuiz();
+
    } 
    
    function mediumFunction(){
-    url = ("https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=medium")
+    url = ("https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=medium")
     fetchAPI();
+    startQuiz();
+
    } 
    
    function hardFunction(){
-    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=hard"
+    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard"
     fetchAPI();
-   } 
-   
+    startQuiz();
 
-function fetchAPI(rsponse, data){
+   } 
+    
+
+function fetchAPI(){
     fetch(url, {})
     .then(response => response.json())
     .then (data => console.log(data));
 }
 
 
+
+
+
+function startQuiz(data) {
+    containerForEverything.classList.remove('hide');
+    startQuizContainer.style.display = "none";
+    questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
+
+
+
+   // displayQuestion(currentQuestionIndex);
+}
+
+
 /*
+function displayQuestion(index){
 
-function getSiblings(e) {
-    let siblings = []; 
-    if(!e.parentNode) {
-        return siblings;
+    document.getElementById('count').innerHTML=configuredCount;
+    
+    if(currentQuestionIndex == allQuestions.length)
+        resetQuiz();
+    else{
+        questionInTheQuiz.innerText = allQuestions[index].question;
+
+        displayAnswers(index);
+        currentQuestionIndex++;
+
+        timer();
     }
-    let sibling  = e.parentNode.firstChild;    
-    while (sibling) {
-        if (sibling.nodeType === 1 && sibling !== e) {
-            siblings.push(sibling);
-        }
-        sibling = sibling.nextSibling;
-    }
-    return siblings;
-};
+
+}*/
 
 
-
-
-
-
-
-
-
+/*
 let configuredCount = 10;
 
-let startQuizContainer = document.getElementById("startQuizContainer");
 let startQuizButton = document.getElementById("startQuizButton"); 
-let containerForEverything =  document.getElementById("containerForEverything"); 
 
 
 let nextQuestionContainer = document.getElementById("nextQuestionContainer");
 
 let nextQuestionButton = document.getElementById("nextQuestionButton");
 
-let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 
 let answerButton0 = document.getElementById("answerButton0");
 let answerButton1 = document.getElementById("answerButton1");
@@ -107,30 +123,8 @@ function resetQuiz() {
     wrongAnswerTotal = 0;
 }
 
-function startQuiz() {
-    containerForEverything.classList.remove('hide');
-    startQuizContainer.style.display = "none";
-    shuffleArray(allQuestions);
-    displayQuestion(currentQuestionIndex);
-}
 
 
-function displayQuestion(index){
-
-    document.getElementById('count').innerHTML=configuredCount;
-    
-    if(currentQuestionIndex == allQuestions.length)
-        resetQuiz();
-    else{
-        questionInTheQuiz.innerText = allQuestions[index].question;
-
-        displayAnswers(index);
-        currentQuestionIndex++;
-
-        timer();
-    }
-
-}
 
 function updateAnswerButton(button, answer) {
     button.innerText = answer.text;
@@ -165,12 +159,6 @@ function nextQuestion() {
     nextQuestionContainer.style.display = "none";
 }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
 
 var count = configuredCount;
 
