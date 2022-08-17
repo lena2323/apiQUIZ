@@ -37,18 +37,19 @@ async function startQuiz(){
 
 
     document.getElementById('count').innerHTML=configuredCount;
-    currentQuestionIndex++;
 
     if(currentQuestionIndex == data.length)
         resetQuiz();
     else{
-        
+        currentQuestionIndex++;
+
         DATAVAR;
      //   displayAnswers(index);
 
         nextQuestionButton.addEventListener('click',() =>{
             nextQuestionContainer.style.display = "none";
-            console.log(DATAVAR)
+           questionInTheQuiz.innerHTML = `${data[1].question}`
+            
         });           
         }
         timer();
