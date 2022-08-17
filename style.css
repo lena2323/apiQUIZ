@@ -1,6 +1,5 @@
 body{
     font-family: 'Times New Roman', Times, serif;
-    background-image: url(images/supernatural-4k_1615203824-2048x1152.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover 100%;
@@ -139,7 +138,7 @@ button:disabled:hover{
 
 .startQuizContainer{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: center;
     background-color: rgba(95, 95, 97, 0.418);
     width: 600px;
@@ -323,6 +322,10 @@ button.rightforcorrectdisabled:hover{
 
 }
 
+.easyMediumHardContainer{
+   margin-bottom: 20px;
+    text-align: center;
+}
 
     /****************RESPONSIVE********************/
 

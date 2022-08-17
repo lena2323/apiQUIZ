@@ -5,8 +5,6 @@
 let difficulty;
 
 
-
-
 function easyFunction(){
     difficulty = "&difficulty=easy";
     fetchAPI();
@@ -23,17 +21,9 @@ function easyFunction(){
    } 
    
 
-   async function fetchAPI(){
-    let response = await fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5" + difficulty + "&tags=actors");
-    console.log(response);
-
-    let allQuestions = await response.json();
-    console.log(allQuestions);
-
-
-    
+function fetchAPI(rsponse, data){
+    fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5" + difficulty + "&tags=actors", {}).then(response => console.log(response))
 }
-
 
 
 /*

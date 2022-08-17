@@ -14,9 +14,15 @@
     <div id="quiz"></div>
 
     <div class="startQuizContainer show hide" id="startQuizContainer">
-    
+        
+        <div id="easyMediumHardContainer" class="easyMediumHardContainer">
+            <button class="allButtons" id="easy" onclick="easyFunction()">easy</button>
+            <button class="allButtons" id="medium" onclick="mediumFunction()">medium</button>
+            <button class="allButtons" id="hard" onclick="hardFunction()">hard</button>
+        </div>
 
         <div class="containerForSnakeBorderButton">
+            
             <a href="#quiz" id="startQuizButton" onclick="startQuiz()">
                 <span></span>
                 <span></span>
@@ -24,12 +30,7 @@
                 <span></span>
                 <p id="startQuizButtonToChange">Are you ready to rock?</p>
             </a>
-
-            <button id="easy" onclick="easyFunction()">easy</button>
-            <button id="medium" onclick="mediumFunction()">medium</button>
-            <button id="hard" onclick="hardFunction()">hard</button>
-
-
+           
         </div>
 
         
