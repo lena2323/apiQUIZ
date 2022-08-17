@@ -10,47 +10,34 @@ let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 let url;
 
 
-async function fetchAPI(){
+async function startQuiz(){
     const response = await fetch(url)
     const data = await response.json();
-    console.log(data[0].question[0]);
-}
-
-
-
-
-
-function startQuiz(data) {
+    console.log(data[0].question);
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none";
+    questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
 
 
-  //  questionInTheQuiz.innerHTML = `hhh: ${data[0].question[0]}`
-
-
-
-   // displayQuestion(currentQuestionIndex);
 }
+
 
 
 
 function easyFunction(){
     url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy"
-    fetchAPI();
     startQuiz();
 
    } 
    
    function mediumFunction(){
     url = ("https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=medium")
-    fetchAPI();
     startQuiz();
 
    } 
    
    function hardFunction(){
     url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard"
-    fetchAPI();
     startQuiz();
 
    } 
