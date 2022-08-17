@@ -9,6 +9,31 @@ let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 
 let url;
 
+
+async function fetchAPI(){
+    const response = await fetch(url)
+    const data = await response.json();
+    console.log(data);
+}
+
+
+
+
+
+function startQuiz(data) {
+    containerForEverything.classList.remove('hide');
+    startQuizContainer.style.display = "none";
+
+
+ //   questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
+
+
+
+   // displayQuestion(currentQuestionIndex);
+}
+
+
+
 function easyFunction(){
     url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy"
     fetchAPI();
@@ -30,27 +55,7 @@ function easyFunction(){
 
    } 
     
-
-function fetchAPI(){
-    fetch(url, {})
-    .then(response => response.json())
-    .then (data => console.log(data));
-}
-
-
-
-
-
-function startQuiz(data) {
-    containerForEverything.classList.remove('hide');
-    startQuizContainer.style.display = "none";
-    questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
-
-
-
-   // displayQuestion(currentQuestionIndex);
-}
-
+   
 
 /*
 function displayQuestion(index){
