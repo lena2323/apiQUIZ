@@ -2,27 +2,29 @@
 
 // var url;
 
-let difficulty;
 
+let url;
 
 function easyFunction(){
-    difficulty = "&difficulty=easy";
+    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=easy"
     fetchAPI();
    } 
    
    function mediumFunction(){
-    difficulty = "&difficulty=medium";
+    url = ("https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=medium")
     fetchAPI();
    } 
    
    function hardFunction(){
-    difficulty = "&difficulty=hard";
+    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=5&difficulty=hard"
     fetchAPI();
    } 
    
 
 function fetchAPI(rsponse, data){
-    fetch("https://the-trivia-api.com/api/questions?categories=film_and_tv&limit=5" + difficulty + "&tags=actors", {}).then(response => console.log(response))
+    fetch(url, {})
+    .then(response => response.json())
+    .then (data => console.log(data));
 }
 
 
