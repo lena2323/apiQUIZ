@@ -13,7 +13,7 @@ let url;
 async function fetchAPI(){
     const response = await fetch(url)
     const data = await response.json();
-    console.log(data);
+    console.log(data[0].question[0]);
 }
 
 
@@ -25,7 +25,7 @@ function startQuiz(data) {
     startQuizContainer.style.display = "none";
 
 
- //   questionInTheQuiz.innerHTML = `hhh: ${data[0].question}`
+  //  questionInTheQuiz.innerHTML = `hhh: ${data[0].question[0]}`
 
 
 
