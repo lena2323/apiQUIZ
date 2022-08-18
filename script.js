@@ -15,6 +15,7 @@ let DATAVAR;
 let url;
 var questionTimerInterval;
 
+let startQuizButtonToChange = document.getElementById("startQuizButtonToChange");
 
 
 let startQuizButton = document.getElementById("startQuizButton"); 
@@ -46,13 +47,15 @@ async function startQuiz(){
         DATAVAR;
      //   displayAnswers(index);
 
-        nextQuestionButton.addEventListener('click',() =>{
+     nextQuestionButton.addEventListener('click',() =>{
             nextQuestionContainer.style.display = "none";
-           questionInTheQuiz.innerHTML = `${data[1].question}`
-            
-        });           
+            DATAVAR= questionInTheQuiz.innerHTML = `${data[currentQuestionIndex].question}`
+
+        });     
+        timer(currentQuestionIndex);
+        count = configuredCount;    
+
         }
-        timer();
     }
 
 
@@ -88,6 +91,40 @@ function timer(){
         
     },
     1000);
+}
+
+
+
+function clickedAnswer(id) {
+    var button = document.getElementById(id);
+
+    clearInterval(questionTimerInterval);
+    document.getElementById('count').innerHTML=count;
+    count = configuredCount;    
+
+    if(button.getAttribute("correct") == "true") {
+        button.classList.remove("wrong");
+        button.classList.add("right");
+  //      correctAnswerTotal++;
+    }        
+    else {
+        button.classList.remove("right");
+        button.classList.add("wrong");
+   //     wrongAnswerTotal++;
+    }
+        
+  //  var otherButtons = getSiblings(button);
+
+ /*   otherButtons.forEach((buttonToDisable) => {
+        if(buttonToDisable.getAttribute("correct") == "true") {
+            buttonToDisable.classList.remove("wrong");
+            buttonToDisable.classList.add("rightforcorrectdisabled");
+        }       
+        buttonToDisable.disabled = true;         
+    });*/
+
+    nextQuestionContainer.style.display = "flex";
+
 }
 
 
@@ -130,7 +167,6 @@ let resultText = document.getElementById("resultText");
 
 let resultMessage = document.getElementById("resultMessage");
 
-let startQuizButtonToChange = document.getElementById("startQuizButtonToChange");
 
 
 function resetQuiz() {
@@ -183,46 +219,13 @@ function displayAnswers(index) {
     updateAnswerButton(answerButton3, allQuestions[index].answers[3]);        
 }
 
-
-
-
-function clickedAnswer(id) {
-    var button = document.getElementById(id);
-
-    clearInterval(questionTimerInterval);
-    document.getElementById('count').innerHTML=count;
-    count = configuredCount;    
-
-    if(button.getAttribute("correct") == "true") {
-        button.classList.remove("wrong");
-        button.classList.add("right");
-        correctAnswerTotal++;
-    }        
-    else {
-        button.classList.remove("right");
-        button.classList.add("wrong");
-        wrongAnswerTotal++;
-    }
-        
-    var otherButtons = getSiblings(button);
-
-    otherButtons.forEach((buttonToDisable) => {
-        if(buttonToDisable.getAttribute("correct") == "true") {
-            buttonToDisable.classList.remove("wrong");
-            buttonToDisable.classList.add("rightforcorrectdisabled");
-        }       
-        buttonToDisable.disabled = true;         
-    });
-
-    nextQuestionContainer.style.display = "flex";
-
-}
-
-
-
-
-
-
-
 */
+
+
+
+
+
+
+
+
 
