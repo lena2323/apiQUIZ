@@ -35,12 +35,19 @@ async function startQuiz(){
 
     document.getElementById('count').innerHTML=configuredCount;
 
-        function displayQuestion(currentQuestionIndex){  
+        function displayQuestion(index){  
 
 
             if(currentQuestionIndex == data.length){
-                resetQuiz();
 
+                currentQuestionIndex = 0;  
+
+                containerForEverything.classList.add('hide');
+                startQuizContainer.style.display = "flex";
+                nextQuestionContainer.classList.remove('hide');
+                resultContainer.classList.remove('hide');
+                nextQuestionContainer.classList.remove('hide');
+        
                 console.log("aaa");  
             }
 
@@ -88,14 +95,6 @@ async function startQuiz(){
     }
 
 
-    function resetQuiz() {
-        currentQuestionIndex = 0;  
-
-        containerForEverything.classList.add('hide');
-        startQuizContainer.style.display = "none";
-        nextQuestionContainer.classList.add('hide');
-        resultContainer.classList.remove('hide');
-     }
 /*
   
 function resetQuiz() {
