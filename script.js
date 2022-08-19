@@ -42,18 +42,22 @@ async function startQuiz(){
     if(currentQuestionIndex == data.length)
         resetQuiz();
     else{
-        currentQuestionIndex++;
 
         DATAVAR;
      //   displayAnswers(index);
 
      nextQuestionButton.addEventListener('click',() =>{
+        currentQuestionIndex++;
+
             nextQuestionContainer.style.display = "none";
             DATAVAR= questionInTheQuiz.innerHTML = `${data[currentQuestionIndex].question}`
+            count = 10;    
+            timer(configuredCount);
 
         });     
         timer(currentQuestionIndex);
         count = configuredCount;    
+
 
         }
     }
