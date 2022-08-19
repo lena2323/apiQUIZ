@@ -23,6 +23,10 @@ let nextQuestionContainer = document.getElementById("nextQuestionContainer");
 
 let nextQuestionButton = document.getElementById("nextQuestionButton");
 
+let easyMediumHardContainer = document.getElementById("easyMediumHardContainer");
+
+easyMediumHardContainer.classList.remove("hide")
+
 
 
 async function startQuiz(){
@@ -36,19 +40,16 @@ async function startQuiz(){
 
         function displayQuestion(index){  
 
-
             if(currentQuestionIndex == data.length){
-
-
-                containerForEverything.classList.add('hide');
-                startQuizContainer.style.display = "flex";
-                nextQuestionContainer.style.display = "none";
-                resultContainer.classList.remove('hide');
+               
+                currentQuestionIndex = 0;
         
             }
 
             else{
+        
                 currentQuestionIndex++;
+        
 
                 console.log(data[index].question);
 
@@ -57,15 +58,13 @@ async function startQuiz(){
 
                 //   displayAnswers(index);
         
-                count = configuredCount;    
         
-                nextQuestionContainer.style.display = "none";
                 questionInTheQuiz.innerHTML = data[index].question;
 
                 console.log(currentQuestionIndex);   
                 }
+                
         };
-
 
         
         
@@ -74,18 +73,21 @@ async function startQuiz(){
             if(currentQuestionIndex == data.length){
                 currentQuestionIndex =0;
 
-                console.log("aaa");  
-                
+
                 containerForEverything.classList.add('hide');
                 startQuizContainer.style.display = "flex";
                 nextQuestionContainer.style.display = "none";
                 resultContainer.classList.remove('hide');
+                easyMediumHardContainer.classList.add("hide");
+                startQuizButton.style.display = "block";
+                console.log("aaa");  
             }
 
             
             else{
                 displayQuestion(currentQuestionIndex);
                 nextQuestionContainer.style.display = "none";
+                timer(currentQuestionIndex);
             }
         });
   
@@ -93,7 +95,7 @@ async function startQuiz(){
     timer(currentQuestionIndex);
 
     displayQuestion(currentQuestionIndex);
-
+    
         
     }
 
@@ -257,6 +259,10 @@ function displayAnswers(index) {
 }
 
 */
+
+
+
+
 
 
 
