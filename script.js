@@ -6,7 +6,6 @@ let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 
 let configuredCount = 10;
 
-let currentQuestionIndex = 0;
 
 var count = configuredCount;
 
@@ -27,11 +26,11 @@ let nextQuestionButton = document.getElementById("nextQuestionButton");
 
 
 async function startQuiz(){
+    currentQuestionIndex =0
     const response = await fetch(url)
     const data = await response.json();
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none";
-    (questionInTheQuiz.innerHTML = `${data[currentQuestionIndex].question}`)
 
     document.getElementById('count').innerHTML=configuredCount;
 
@@ -40,19 +39,15 @@ async function startQuiz(){
 
             if(currentQuestionIndex == data.length){
 
-                currentQuestionIndex = 0;  
 
                 containerForEverything.classList.add('hide');
                 startQuizContainer.style.display = "flex";
-                nextQuestionContainer.classList.remove('hide');
+                nextQuestionContainer.style.display = "none";
                 resultContainer.classList.remove('hide');
-                nextQuestionContainer.classList.remove('hide');
         
-                console.log("aaa");  
             }
 
             else{
-
                 currentQuestionIndex++;
 
                 console.log(data[index].question);
@@ -67,24 +62,32 @@ async function startQuiz(){
                 nextQuestionContainer.style.display = "none";
                 questionInTheQuiz.innerHTML = data[index].question;
 
-                console.log(currentQuestionIndex);    
+                console.log(currentQuestionIndex);   
                 }
         };
 
 
         
-
-        function nextQuestion(){ 
-            displayQuestion(currentQuestionIndex);
-            nextQuestionContainer.style.display = "none";
-            
-        }
-        
-
         
         nextQuestionContainer.addEventListener('click',() =>{
-            nextQuestion()
-         });
+            
+            if(currentQuestionIndex == data.length){
+                currentQuestionIndex =0;
+
+                console.log("aaa");  
+                
+                containerForEverything.classList.add('hide');
+                startQuizContainer.style.display = "flex";
+                nextQuestionContainer.style.display = "none";
+                resultContainer.classList.remove('hide');
+            }
+
+            
+            else{
+                displayQuestion(currentQuestionIndex);
+                nextQuestionContainer.style.display = "none";
+            }
+        });
   
   
     timer(currentQuestionIndex);
