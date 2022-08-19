@@ -10,7 +10,6 @@ let currentQuestionIndex = 0;
 
 var count = configuredCount;
 
-let DATAVAR;
 
 let url;
 var questionTimerInterval;
@@ -30,41 +29,85 @@ let nextQuestionButton = document.getElementById("nextQuestionButton");
 async function startQuiz(){
     const response = await fetch(url)
     const data = await response.json();
-    console.log(data[0].question);
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none";
-    DATAVAR = (questionInTheQuiz.innerHTML = `${data[0].question}`)
-
-
+    (questionInTheQuiz.innerHTML = `${data[currentQuestionIndex].question}`)
 
     document.getElementById('count').innerHTML=configuredCount;
 
-    if(currentQuestionIndex == data.length)
-        resetQuiz();
-    else{
+        function displayQuestion(){  
+            
 
-        DATAVAR;
-     //   displayAnswers(index);
+            if(currentQuestionIndex == data.length){
+                console.log("aaa");  
+                currentQuestionIndex = 0;
+            }
 
-     nextQuestionButton.addEventListener('click',() =>{
-        currentQuestionIndex++;
+            else{
+                currentQuestionIndex++;
 
+                console.log(data[currentQuestionIndex].question);
+
+                console.log("kdsfskkdfskdfsfsdf");  
+
+
+                //   displayAnswers(index);
+        
+                count = configuredCount;    
+        
+                nextQuestionContainer.style.display = "none";
+                questionInTheQuiz.innerHTML = data[currentQuestionIndex].question;
+
+                console.log(currentQuestionIndex);    
+                }
+        };
+
+
+
+        function nextQuestion(){ 
+            displayQuestion(currentQuestionIndex);
             nextQuestionContainer.style.display = "none";
-            DATAVAR= questionInTheQuiz.innerHTML = `${data[currentQuestionIndex].question}`
-            count = 10;    
-            timer(configuredCount);
-
-        });     
-        timer(currentQuestionIndex);
-        count = configuredCount;    
-
-
         }
+        
+
+        
+        nextQuestionContainer.addEventListener('click',() =>{
+            nextQuestion()
+         });
+  
+  
+    timer(currentQuestionIndex);
+
+    displayQuestion(currentQuestionIndex);
+
+        
+      
     }
 
 
 
   
+function resetQuiz() {
+
+    containerForEverything.classList.add('hide');
+    startQuizContainer.style.display = "flex";
+    nextQuestionContainer.classList.add('hide');
+    startQuizButtonToChange.innerText = "Restart?";
+    currentQuestionIndex = 0;
+    resultContainer.classList.remove('hide');
+   /* resultText.innerText = "Correct answers: " + correctAnswerTotal + `\n` + "Wrong answers: " + wrongAnswerTotal + `\n` + "Total answered questions:" + (correctAnswerTotal + wrongAnswerTotal);
+    
+
+    if (correctAnswerTotal >= 7)
+       {resultMessage.innerText = "Good job!"}
+    
+    else if (correctAnswerTotal <= 6)
+       {resultMessage.innerText = "Study more idjit!"}
+
+    correctAnswerTotal = 0;
+    wrongAnswerTotal = 0;*/
+}
+
   
 
 
@@ -172,27 +215,6 @@ let resultText = document.getElementById("resultText");
 let resultMessage = document.getElementById("resultMessage");
 
 
-
-function resetQuiz() {
-
-    containerForEverything.classList.add('hide');
-    startQuizContainer.style.display = "flex";
-    nextQuestionContainer.classList.add('hide');
-    startQuizButtonToChange.innerText = "Restart?";
-    currentQuestionIndex = 0;
-    resultContainer.classList.remove('hide');
-    resultText.innerText = "Correct answers: " + correctAnswerTotal + `\n` + "Wrong answers: " + wrongAnswerTotal + `\n` + "Total answered questions:" + (correctAnswerTotal + wrongAnswerTotal);
-    
-
-    if (correctAnswerTotal >= 7)
-       {resultMessage.innerText = "Good job!"}
-    
-    else if (correctAnswerTotal <= 6)
-       {resultMessage.innerText = "Study more idjit!"}
-
-    correctAnswerTotal = 0;
-    wrongAnswerTotal = 0;
-}
 
 
 
