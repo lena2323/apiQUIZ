@@ -35,18 +35,20 @@ async function startQuiz(){
 
     document.getElementById('count').innerHTML=configuredCount;
 
-        function displayQuestion(){  
-            
+        function displayQuestion(currentQuestionIndex){  
+
 
             if(currentQuestionIndex == data.length){
+                resetQuiz();
+
                 console.log("aaa");  
-                currentQuestionIndex = 0;
             }
 
             else{
+
                 currentQuestionIndex++;
 
-                console.log(data[currentQuestionIndex].question);
+                console.log(data[index].question);
 
                 console.log("kdsfskkdfskdfsfsdf");  
 
@@ -56,17 +58,19 @@ async function startQuiz(){
                 count = configuredCount;    
         
                 nextQuestionContainer.style.display = "none";
-                questionInTheQuiz.innerHTML = data[currentQuestionIndex].question;
+                questionInTheQuiz.innerHTML = data[index].question;
 
                 console.log(currentQuestionIndex);    
                 }
         };
 
 
+        
 
         function nextQuestion(){ 
             displayQuestion(currentQuestionIndex);
             nextQuestionContainer.style.display = "none";
+            
         }
         
 
@@ -81,11 +85,18 @@ async function startQuiz(){
     displayQuestion(currentQuestionIndex);
 
         
-      
     }
 
 
+    function resetQuiz() {
+        currentQuestionIndex = 0;  
 
+        containerForEverything.classList.add('hide');
+        startQuizContainer.style.display = "none";
+        nextQuestionContainer.classList.add('hide');
+        resultContainer.classList.remove('hide');
+     }
+/*
   
 function resetQuiz() {
 
@@ -106,9 +117,7 @@ function resetQuiz() {
 
     correctAnswerTotal = 0;
     wrongAnswerTotal = 0;*/
-}
 
-  
 
 
 
