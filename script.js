@@ -27,77 +27,82 @@ let easyMediumHardContainer = document.getElementById("easyMediumHardContainer")
 
 easyMediumHardContainer.classList.remove("hide")
 
+document.getElementById('count').innerHTML=configuredCount;
+
+let easyButton = document.getElementById("easy");
+let mediumButton = document.getElementById("medium");
+let hardButton = document.getElementById("hard");
+
+
+    function easyFunction(){
+        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy" 
+    }
 
 
 async function startQuiz(){
+
+
     currentQuestionIndex =0
-    const response = await fetch(url)
+    const response = await fetch (url);
     const data = await response.json();
     containerForEverything.classList.remove('hide');
-    startQuizContainer.style.display = "none";
+    startQuizContainer.style.display = "none";   
+    displayQuestion(data);
+}
 
-    document.getElementById('count').innerHTML=configuredCount;
+function displayQuestion(data){  
 
-        function displayQuestion(index){  
-
-            if(currentQuestionIndex == data.length){
-               
-                currentQuestionIndex = 0;
-        
-            }
-
-            else{
-        
-                currentQuestionIndex++;
-        
-
-                console.log(data[index].question);
-
-                console.log("kdsfskkdfskdfsfsdf");  
-
-
-                //   displayAnswers(index);
-        
-        
-                questionInTheQuiz.innerHTML = data[index].question;
-
-                console.log(currentQuestionIndex);   
-                }
-                
-        };
-
-        
-        
-        nextQuestionContainer.addEventListener('click',() =>{
-            
-            if(currentQuestionIndex == data.length){
-                currentQuestionIndex =0;
-
-
-                containerForEverything.classList.add('hide');
-                startQuizContainer.style.display = "flex";
-                nextQuestionContainer.style.display = "none";
-                resultContainer.classList.remove('hide');
-                easyMediumHardContainer.classList.add("hide");
-                startQuizButton.style.display = "block";
-                console.log("aaa");  
-            }
-
-            
-            else{
-                displayQuestion(currentQuestionIndex);
-                nextQuestionContainer.style.display = "none";
-                timer(currentQuestionIndex);
-            }
-        });
-  
-  
-    timer(currentQuestionIndex);
-
-    displayQuestion(currentQuestionIndex);
+        if(currentQuestionIndex == [data].length){
+           
+            currentQuestionIndex = 0;
     
+        }
+
+        else{
+            questionInTheQuiz.innerHTML = data[currentQuestionIndex].question;
+            currentQuestionIndex = 0;
+
+            currentQuestionIndex++;
+    
+
+            console.log(data[currentQuestionIndex].question);
+
+            console.log("kdsfskkdfskdfsfsdf");  
+
+
+            //   displayAnswers(index);
+    
+    
+
+            console.log(currentQuestionIndex);   
+            }
+            
+    };
+
+
+
+    
+    function nextQuestion(data){         
+        if(currentQuestionIndex == [data].length){
+
+
+            containerForEverything.classList.add('hide');
+            startQuizContainer.style.display = "flex";
+            nextQuestionContainer.style.display = "none";
+            resultContainer.classList.remove('hide');
+            easyMediumHardContainer.classList.add("hide");
+            startQuizButton.style.display = "block";
+            console.log("aaa");  
+        }
+
         
+        else{
+            currentQuestionIndex++
+            displayQuestion(currentQuestionIndex);
+            nextQuestionContainer.style.display = "none";
+        }
     }
+
 
 
 /*
@@ -189,24 +194,6 @@ function clickedAnswer(id) {
 
 
 
-
-function easyFunction(){
-    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy"
-    startQuiz();
-
-   } 
-   
-   function mediumFunction(){
-    url = ("https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=medium")
-    startQuiz();
-
-   } 
-   
-   function hardFunction(){
-    url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard"
-    startQuiz();
-
-   } 
     
    
 
