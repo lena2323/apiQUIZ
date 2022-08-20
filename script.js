@@ -51,24 +51,31 @@ let hardButton = document.getElementById("hard");
 async function startQuiz(){
 
 
-    const response = await fetch (url);
-    const data = await response.json();
+    let response = await fetch (url);
+    let data = await response.json();
     
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none"; 
     displayQuestion(data, currentQuestionIndex);
     console.log(response)
     console.log(data)
+    
 }
 
 
+
+function nextQuestion(...data){  
+    displayQuestion(...data, currentQuestionIndex);
+    nextQuestionContainer.style.display = "none";
+
+}
 
     
     function displayQuestion(data, index){
 
         document.getElementById('count').innerHTML=configuredCount;
 
-        if(currentQuestionIndex == [data].length)
+        if(currentQuestionIndex == data.length)
 
         resetQuiz();
 
@@ -103,15 +110,6 @@ async function startQuiz(){
 
 
 
-
-    function nextQuestion( data){  
-        console.log([data].length)     
-        console.log(currentQuestionIndex)     
-
-        displayQuestion(data, currentQuestionIndex);
-        nextQuestionContainer.style.display = "none";
-
-}
 
 /*
   
