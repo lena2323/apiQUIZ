@@ -38,6 +38,14 @@ let hardButton = document.getElementById("hard");
         url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy" 
     }
 
+    function mediumFunction(){
+        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=medium" 
+    }
+
+    function hardFunction(){
+        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard" 
+    }
+
 
 async function startQuiz(){
 
