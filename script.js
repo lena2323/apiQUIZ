@@ -52,29 +52,24 @@ async function startQuiz(){
 
 
     let response = await fetch (url);
-    let data = await response.json();
-    
+    let data = await response.json()
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none"; 
     displayQuestion(data, currentQuestionIndex);
     console.log(response)
     console.log(data)
     
-}
-
-
-
-function nextQuestion(...data){  
-    displayQuestion(...data, currentQuestionIndex);
-    nextQuestionContainer.style.display = "none";
 
 }
+
+
 
     
     function displayQuestion(data, index){
 
         document.getElementById('count').innerHTML=configuredCount;
 
+         
         if(currentQuestionIndex == data.length)
 
         resetQuiz();
@@ -84,17 +79,30 @@ function nextQuestion(...data){
         else{
             questionInTheQuiz.innerHTML =  (data[index].question );
 
-            currentQuestionIndex++
-            console.log(currentQuestionIndex);
-            console.log(data.length)
             timer();
+                currentQuestionIndex++
 
+                nextQuestionButton.addEventListener('click',nextQuestion(currentQuestionIndex, data));
+
+               
+
+            };
+    
+            
+            function nextQuestion(index, data){
+
+                console.log(data.length, "dd")     
+                console.log(currentQuestionIndex)   
+                console.log(data[index].question)    
+
+                questionInTheQuiz.innerHTML =  data[index].question 
+
+                nextQuestionContainer.style.display = "none";
+            
+                    
 
         }
-    
     }
-
-
 
 
     function resetQuiz(){
@@ -111,6 +119,12 @@ function nextQuestion(...data){
 
 
 
+
+
+
+
+
+  
 /*
   
 function resetQuiz() {
