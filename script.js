@@ -45,71 +45,72 @@ let hardButton = document.getElementById("hard");
     function hardFunction(){
         url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard" 
     }
+let currentQuestionIndex =0
 
 
 async function startQuiz(){
 
 
-    currentQuestionIndex =0
     const response = await fetch (url);
     const data = await response.json();
+    
     containerForEverything.classList.remove('hide');
-    startQuizContainer.style.display = "none";   
-    displayQuestion(data);
+    startQuizContainer.style.display = "none"; 
+    
+
+    displayQuestion(data, currentQuestionIndex);
+
 }
 
-function displayQuestion(data){  
 
+
+
+    function displayQuestion(data, index){
+
+        document.getElementById('count').innerHTML=configuredCount;
+       
         if(currentQuestionIndex == [data].length){
-           
-            currentQuestionIndex = 0;
-    
+
+        resetQuiz();
+
         }
-
         else{
-            questionInTheQuiz.innerHTML = data[currentQuestionIndex].question;
-            currentQuestionIndex = 0;
-
-            currentQuestionIndex++;
-    
-
-            console.log(data[currentQuestionIndex].question);
-
-            console.log("kdsfskkdfskdfsfsdf");  
-
-
-            //   displayAnswers(index);
-    
-    
-
-            console.log(currentQuestionIndex);   
-            }
+            questionInTheQuiz.innerHTML = data[index].question;
             
-    };
+
+            currentQuestionIndex++
+
+           // displayAnswers(index);
+           console.log(data[index].question);
+           console.log("kdsfskkdfskdfsfsdf");  
+           console.log(currentQuestionIndex);  
+            timer();
+        }
+    
+    }
+
 
 
 
     
-    function nextQuestion(data){         
-        if(currentQuestionIndex == [data].length){
+    function nextQuestion(currentQuestionIndex){         
+        
+            displayQuestion(currentQuestionIndex);
+            nextQuestionContainer.style.display = "none";
+        
+    }
 
+    function resetQuiz(){
 
-            containerForEverything.classList.add('hide');
+        containerForEverything.classList.add('hide');
             startQuizContainer.style.display = "flex";
             nextQuestionContainer.style.display = "none";
             resultContainer.classList.remove('hide');
             easyMediumHardContainer.classList.add("hide");
             startQuizButton.style.display = "block";
             console.log("aaa");  
-        }
-
-        
-        else{
-            currentQuestionIndex++
-            displayQuestion(currentQuestionIndex);
-            nextQuestionContainer.style.display = "none";
-        }
     }
+
 
 
 
