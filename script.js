@@ -1,3 +1,4 @@
+let currentQuestionIndex = 0
 
 let startQuizContainer = document.getElementById("startQuizContainer");
 let containerForEverything =  document.getElementById("containerForEverything"); 
@@ -45,7 +46,6 @@ let hardButton = document.getElementById("hard");
     function hardFunction(){
         url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard" 
     }
-let currentQuestionIndex =0
 
 
 async function startQuiz(){
@@ -56,49 +56,39 @@ async function startQuiz(){
     
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none"; 
-    
-
     displayQuestion(data, currentQuestionIndex);
-
+    console.log(response)
+    console.log(data)
 }
 
 
 
-
+    
     function displayQuestion(data, index){
 
         document.getElementById('count').innerHTML=configuredCount;
-       
-        if(currentQuestionIndex == [data].length){
+
+        if(currentQuestionIndex == [data].length)
 
         resetQuiz();
 
-        }
+
+        
         else{
-            questionInTheQuiz.innerHTML = data[index].question;
-            
+            questionInTheQuiz.innerHTML =  (data[index].question );
 
             currentQuestionIndex++
-
-           // displayAnswers(index);
-           console.log(data[index].question);
-           console.log("kdsfskkdfskdfsfsdf");  
-           console.log(currentQuestionIndex);  
+            console.log(currentQuestionIndex);
+            console.log(data.length)
             timer();
+
+
         }
     
     }
 
 
 
-
-    
-    function nextQuestion(currentQuestionIndex){         
-        
-            displayQuestion(currentQuestionIndex);
-            nextQuestionContainer.style.display = "none";
-        
-    }
 
     function resetQuiz(){
 
@@ -113,6 +103,16 @@ async function startQuiz(){
 
 
 
+
+    function nextQuestion(currentQuestionIndex, data){  
+        console.log([data].length)     
+        console.log(currentQuestionIndex)     
+        questionInTheQuiz.innerHTML =  (data[currentQuestionIndex].question );
+
+        displayQuestion(data, currentQuestionIndex);
+        nextQuestionContainer.style.display = "none";
+
+}
 
 /*
   
