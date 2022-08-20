@@ -104,10 +104,9 @@ async function startQuiz(){
 
 
 
-    function nextQuestion(currentQuestionIndex, data){  
+    function nextQuestion( data){  
         console.log([data].length)     
         console.log(currentQuestionIndex)     
-        questionInTheQuiz.innerHTML =  (data[currentQuestionIndex].question );
 
         displayQuestion(data, currentQuestionIndex);
         nextQuestionContainer.style.display = "none";
