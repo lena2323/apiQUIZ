@@ -41,7 +41,7 @@ var count = configuredCount;
 var questionTimerInterval;
 
 function chooseDifficulty(difficulty){
-    return `https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=3&difficulty=${difficulty}`; 
+    return `https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=${difficulty}`; 
 }
 
 async function startQuiz(difficulty){
