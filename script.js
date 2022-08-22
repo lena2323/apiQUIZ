@@ -51,10 +51,16 @@ async function startQuiz(difficulty){
     data = await response.json();
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none"; 
+   
+
+
     displayQuestion(data[currentQuestionIndex]);
 
     console.log(response)
     console.log(data)    
+
+
+    
 
 }
 
@@ -135,12 +141,13 @@ function displayAnswers(questionToDisplay) {
 function resetQuiz(){
     containerForEverything.classList.add('hide');
     startQuizContainer.style.display = "flex";
-    resultContainer.classList.remove('hide');
     easyMediumHardContainer.classList.add("hide");
-    startQuizButton.style.display = "block";
+    resultContainer.classList.add('hide');
+    startQuizButton.style.display = "none";
     console.log("aaa");  
 
     currentQuestionIndex = 0;
+
 
 }
 
