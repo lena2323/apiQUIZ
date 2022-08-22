@@ -1,24 +1,29 @@
-let currentQuestionIndex = 0
-
-let startQuizContainer = document.getElementById("startQuizContainer");
-let containerForEverything =  document.getElementById("containerForEverything"); 
-let questionInTheQuiz = document.getElementById("questionInTheQuiz");
+function getSiblings(e) {
+    let siblings = []; 
+    if(!e.parentNode) {
+        return siblings;
+    }
+    let sibling  = e.parentNode.firstChild;    
+    while (sibling) {
+        if (sibling.nodeType === 1 && sibling !== e) {
+            siblings.push(sibling);
+        }
+        sibling = sibling.nextSibling;
+    }
+    return siblings;
+};
 
 
 let configuredCount = 10;
 
-
-var count = configuredCount;
-
-
-let url;
-var questionTimerInterval;
+// Probably mandatory to remove these global vars
+let startQuizContainer = document.getElementById("startQuizContainer");
+let containerForEverything =  document.getElementById("containerForEverything"); 
+let questionInTheQuiz = document.getElementById("questionInTheQuiz");
 
 let startQuizButtonToChange = document.getElementById("startQuizButtonToChange");
 
-
-let startQuizButton = document.getElementById("startQuizButton"); 
-
+let startQuizButton = document.getElementById("startQuizButton");
 
 let nextQuestionContainer = document.getElementById("nextQuestionContainer");
 
@@ -26,102 +31,186 @@ let nextQuestionButton = document.getElementById("nextQuestionButton");
 
 let easyMediumHardContainer = document.getElementById("easyMediumHardContainer");
 
-easyMediumHardContainer.classList.remove("hide")
-
 document.getElementById('count').innerHTML=configuredCount;
 
-let easyButton = document.getElementById("easy");
-let mediumButton = document.getElementById("medium");
-let hardButton = document.getElementById("hard");
+// Probably optional remove global variables
 
+let currentQuestionIndex = 0;
+let data = {};
+var count = configuredCount;
+var questionTimerInterval;
 
-    function easyFunction(){
-        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=easy" 
-    }
+function chooseDifficulty(difficulty){
+    return `https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=3&difficulty=${difficulty}`; 
+}
 
-    function mediumFunction(){
-        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=medium" 
-    }
+async function startQuiz(difficulty){
 
-    function hardFunction(){
-        url = "https://the-trivia-api.com/api/questions?categories=arts_and_literature&limit=10&difficulty=hard" 
-    }
-
-
-async function startQuiz(){
-
-
+    let url = chooseDifficulty(difficulty);
     let response = await fetch (url);
-    let data = await response.json()
+    data = await response.json();
     containerForEverything.classList.remove('hide');
     startQuizContainer.style.display = "none"; 
-    displayQuestion(data, currentQuestionIndex);
+    displayQuestion(data[currentQuestionIndex]);
+
     console.log(response)
-    console.log(data)
+    console.log(data)    
+
+}
+
+function nextQuestion(){
+
+    if(currentQuestionIndex == data.length)
+        resetQuiz();
+    else {
+        displayQuestion(data[currentQuestionIndex]);
+    }
+
+    nextQuestionContainer.style.display = "none";
+
+}
     
+function displayQuestion(questionToDisplay){
+
+    document.getElementById('count').innerHTML=configuredCount;
+    
+    questionInTheQuiz.innerHTML =  (questionToDisplay.question);
+
+    timer();
+    displayAnswers(questionToDisplay);
+
+    currentQuestionIndex++;
 
 }
 
 
 
-    
-    function displayQuestion(data, index){
+function displayAnswers(questionToDisplay) {
+    let allButtonsContainer = document.getElementById("allButtonsContainer")
+     let allButtonsFromAnswers = allButtonsContainer.children;
+     let idxArray = [0, 1, 2, 3];
+     for (let i = idxArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [idxArray[i], idxArray[j]] = [idxArray[j], idxArray[i]];
+     }
 
-        document.getElementById('count').innerHTML=configuredCount;
+     allButtonsFromAnswers[idxArray[0]].innerHTML = questionToDisplay.correctAnswer;
+     allButtonsFromAnswers[idxArray[1]].innerHTML = questionToDisplay.incorrectAnswers[0];
+     allButtonsFromAnswers[idxArray[2]].innerHTML = questionToDisplay.incorrectAnswers[1];
+     allButtonsFromAnswers[idxArray[3]].innerHTML = questionToDisplay.incorrectAnswers[2];
+}
 
-         
-        if(currentQuestionIndex == data.length)
+function resetQuiz(){
+    containerForEverything.classList.add('hide');
+    startQuizContainer.style.display = "flex";
+    resultContainer.classList.remove('hide');
+    easyMediumHardContainer.classList.add("hide");
+    startQuizButton.style.display = "block";
+    console.log("aaa");  
 
-        resetQuiz();
+    currentQuestionIndex = 0;
+
+}
+
+function showDifficultyChoices() {
+    easyMediumHardContainer.classList.remove("hide");
+    resultContainer.classList.add('hide');
+    startQuizButton.style.display = "none";
+
+}
 
 
+
+
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+
+
+function clickedAnswer(id) {
+    var button = document.getElementById(id);
+
+    clearInterval(questionTimerInterval);
+    document.getElementById('count').innerHTML=count;
+    count = configuredCount;    
+
+    if(button = questionToDisplay[currentQuestionIndex].correctAnswer){
+        button.classList.remove("wrong");
+        button.classList.add("right");
+  //      correctAnswerTotal++;
+    }        
+    else {
+        button.classList.remove("right");
+        button.classList.add("wrong");
+   //     wrongAnswerTotal++;
+    }
         
-        else{
-            questionInTheQuiz.innerHTML =  (data[index].question );
+   var otherButtons = getSiblings(button);
 
-            timer();
-                currentQuestionIndex++
+   otherButtons.forEach((buttonToDisable) => {
+        if(buttonToDisable.getAttribute("correct") == "true") {
+            buttonToDisable.classList.remove("wrong");
+            buttonToDisable.classList.add("rightforcorrectdisabled");
+        }       
+        buttonToDisable.disabled = true;         
+    });
 
-                nextQuestionButton.addEventListener('click',nextQuestion(currentQuestionIndex, data));
+    nextQuestionContainer.style.display = "flex";
 
-               
+}
 
-            };
+
+function updateAnswerButton(button, answer) {
+    button.innerText = answer.text;
+    if(answer.correct == true) {
+        button.setAttribute("correct", "true");
+    }        
+    else {
+        button.setAttribute("correct", "false");
+    }
+
+    button.disabled = false;
+
+    button.classList.remove("wrong");
+    button.classList.remove("right");
+    button.classList.remove("rightforcorrectdisabled");
+
+}
+
+// // pozvana funkcija koja radi nesto ali nema return
+// funkcija();
+
+
+// // pozvana funkcija koja ima return
+// // to sto se returnuje smo stavili u "varijabla"
+// varijabla = funkcija();
+
+
+// if(funkcija()) {
+//     // process error somehow
+// }
     
-            
-            function nextQuestion(index, data){
-
-                console.log(data.length, "dd")     
-                console.log(currentQuestionIndex)   
-                console.log(data[index].question)    
-
-                questionInTheQuiz.innerHTML =  data[index].question 
-
-                nextQuestionContainer.style.display = "none";
-            
-                    
-
-        }
-    }
+// else{
+//     // no error, yay
+// }
+                                                   // ACAAAAAAAAAAA
+// function funkcija() {
 
 
-    function resetQuiz(){
+//     // ...
 
-        containerForEverything.classList.add('hide');
-            startQuizContainer.style.display = "flex";
-            nextQuestionContainer.style.display = "none";
-            resultContainer.classList.remove('hide');
-            easyMediumHardContainer.classList.add("hide");
-            startQuizButton.style.display = "block";
-            console.log("aaa");  
-    }
+//     if(error_happened)
+//         return 1;
+//     else
+//         return 0;
 
 
-
-
-
-
-
+// }
 
 
   
@@ -166,10 +255,10 @@ function timer(){
             nextQuestionContainer.style.display = "flex";
 
 
-         /*   answerButton0.disabled = true;
+            answerButton0.disabled = true;
             answerButton1.disabled = true;
             answerButton2.disabled = true;
-            answerButton3.disabled = true;*/
+            answerButton3.disabled = true;
 
             count = configuredCount;
         }      
@@ -180,49 +269,12 @@ function timer(){
 
 
 
-function clickedAnswer(id) {
-    var button = document.getElementById(id);
-
-    clearInterval(questionTimerInterval);
-    document.getElementById('count').innerHTML=count;
-    count = configuredCount;    
-
-    if(button.getAttribute("correct") == "true") {
-        button.classList.remove("wrong");
-        button.classList.add("right");
-  //      correctAnswerTotal++;
-    }        
-    else {
-        button.classList.remove("right");
-        button.classList.add("wrong");
-   //     wrongAnswerTotal++;
-    }
-        
-  //  var otherButtons = getSiblings(button);
-
- /*   otherButtons.forEach((buttonToDisable) => {
-        if(buttonToDisable.getAttribute("correct") == "true") {
-            buttonToDisable.classList.remove("wrong");
-            buttonToDisable.classList.add("rightforcorrectdisabled");
-        }       
-        buttonToDisable.disabled = true;         
-    });*/
-
-    nextQuestionContainer.style.display = "flex";
-
-}
-
-
 
     
    
 
 
 /*
-let answerButton0 = document.getElementById("answerButton0");
-let answerButton1 = document.getElementById("answerButton1");
-let answerButton2 = document.getElementById("answerButton2");
-let answerButton3 = document.getElementById("answerButton3");
 
 
 let correctAnswerTotal = 0;
@@ -239,31 +291,6 @@ let resultMessage = document.getElementById("resultMessage");
 
 
 
-function updateAnswerButton(button, answer) {
-    button.innerText = answer.text;
-    if(answer.correct == true) {
-        button.setAttribute("correct", "true");
-    }        
-    else {
-        button.setAttribute("correct", "false");
-    }
-
-    button.disabled = false;
-
-    button.classList.remove("wrong");
-    button.classList.remove("right");
-    button.classList.remove("rightforcorrectdisabled");
-
-}
-
-function displayAnswers(index) {
-    shuffleArray(allQuestions[index].answers);
-    
-    updateAnswerButton(answerButton0, allQuestions[index].answers[0]);
-    updateAnswerButton(answerButton1, allQuestions[index].answers[1]);
-    updateAnswerButton(answerButton2, allQuestions[index].answers[2]);
-    updateAnswerButton(answerButton3, allQuestions[index].answers[3]);        
-}
 
 */
 

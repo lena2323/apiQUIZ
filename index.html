@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPN quiz</title>
+    <title>API quiz</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -15,15 +15,15 @@
 
     <div class="startQuizContainer show hide" id="startQuizContainer">
         
-        <div id="easyMediumHardContainer" class="easyMediumHardContainer hide">
-            <button class="allButtons" id="easy" onclick="easyFunction(),startQuiz()">easy</button>
-            <button class="allButtons" id="medium" onclick="mediumFunction(),startQuiz()">medium</button>
-            <button class="allButtons" id="hard" onclick="hardFunction(),startQuiz()">hard</button>
+        <div id="easyMediumHardContainer" class="easyMediumHardContainer">
+            <button class="allButtons" id="easy" onclick="startQuiz('easy')">easy</button>
+            <button class="allButtons" id="medium" onclick="startQuiz('medium')">medium</button>
+            <button class="allButtons" id="hard" onclick="startQuiz('hard')">hard</button>
         </div>
 
         <div class="containerForSnakeBorderButton" id="containerForSnakeBorderButton">
             
-            <a href="index.html" id="startQuizButton" class="hide">
+            <a href="#quiz" id="startQuizButton" class="hide" onclick="showDifficultyChoices()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -64,7 +64,7 @@
 
     <div class="nextQuestionContainer hide" id="nextQuestionContainer">
 
-    <a href="#quiz" id="nextQuestionButton" >
+    <a href="#quiz" id="nextQuestionButton" onclick="nextQuestion()">
         <span></span>
         <span></span>
         <span></span>
