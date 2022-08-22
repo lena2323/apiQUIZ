@@ -1,11 +1,13 @@
 body{
     font-family: 'Times New Roman', Times, serif;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover 100%;
+    background-image: url(images/bcg.jpg);
+    background-size: 100% 100vh;
+    background-position: cover;
+    background-repeat:no-repeat;
+    background-color: rgb(49, 48, 48);
+    max-height: 120vh;
     margin: auto;
     padding: 0%;
-
 }
 
 
@@ -33,12 +35,11 @@ html {
     flex-direction: column;
     margin: auto;
     padding-bottom: 0px;
-    background-color: rgba(95, 95, 97, 0.418);
     max-width: 800px;
     min-height: 60vh;
     position: relative;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 160px;
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
 
@@ -149,7 +150,7 @@ button:disabled:hover{
     max-width: 800px;
     height: 60vh;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 160px;
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
 }
@@ -346,10 +347,11 @@ button.rightforcorrectdisabled:hover{
 @media only screen and (max-width: 900px){
 
 body{
-    background-size: 100% ;
-    background-position: top;
-    background-color: rgb(6,5,11);
-    background-repeat: no-repeat;
+    background-color: rgba(49, 48, 48, 0);
+    background-size: 100% 107vh;
+    background-position: cover;
+
+    background-repeat:repeat;
 }
 
 .containerForEverything{
@@ -362,10 +364,6 @@ body{
     min-height: 100vh;
 }
 
-.containerForEverything img{
-    max-width: 300px;
-    padding-bottom: 30px;
-}
 
 .containerForEverything p{
     padding-bottom: 10px;
@@ -409,10 +407,19 @@ body{
     padding: 30px;
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 20px;
+
 }
 
 a{
     width: 350px;
+
+}
+
+.nextQuestionContainer{
+    padding-top: 0px;
+    margin-top: -10px;
+    backdrop-filter: blur( 4.5px );
 
 }
 
