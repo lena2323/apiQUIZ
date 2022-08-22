@@ -77,6 +77,7 @@ function displayQuestion(questionToDisplay){
     questionInTheQuiz.innerHTML =  (questionToDisplay.question);
 
     timer();
+
     displayAnswers(questionToDisplay);
 
     currentQuestionIndex++;
@@ -86,8 +87,13 @@ function displayQuestion(questionToDisplay){
 
 
 function displayAnswers(questionToDisplay) {
+    resetButtons();
+
     let allButtonsContainer = document.getElementById("allButtonsContainer")
      let allButtonsFromAnswers = allButtonsContainer.children;
+
+
+
      let idxArray = [0, 1, 2, 3];
      for (let i = idxArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -95,10 +101,34 @@ function displayAnswers(questionToDisplay) {
      }
 
      allButtonsFromAnswers[idxArray[0]].innerHTML = questionToDisplay.correctAnswer;
+     allButtonsFromAnswers[idxArray[0]].setAttribute("correct","true");
      allButtonsFromAnswers[idxArray[1]].innerHTML = questionToDisplay.incorrectAnswers[0];
      allButtonsFromAnswers[idxArray[2]].innerHTML = questionToDisplay.incorrectAnswers[1];
      allButtonsFromAnswers[idxArray[3]].innerHTML = questionToDisplay.incorrectAnswers[2];
-}
+
+    
+    }
+
+
+    function resetButtons(){
+
+        let allButtonsContainer = document.getElementById("allButtonsContainer")
+        let allButtonsFromAnswers = allButtonsContainer.children;
+
+        for (i = 0; i < allButtonsFromAnswers.length; i++) {
+            allButtonsFromAnswers[i].classList.remove('right');
+            allButtonsFromAnswers[i].classList.remove('wrong');
+            allButtonsFromAnswers[i].classList.remove('rightforcorrectdisabled');
+            allButtonsFromAnswers[i].disabled = false;
+            allButtonsFromAnswers[i].removeAttribute("correct","true");
+
+        }
+
+    }
+
+          
+
+
 
 function resetQuiz(){
     containerForEverything.classList.add('hide');
@@ -139,7 +169,7 @@ function clickedAnswer(id) {
     document.getElementById('count').innerHTML=count;
     count = configuredCount;    
 
-    if(button = questionToDisplay[currentQuestionIndex].correctAnswer){
+    if(button.getAttribute("correct") == "true" ){
         button.classList.remove("wrong");
         button.classList.add("right");
   //      correctAnswerTotal++;
@@ -165,22 +195,6 @@ function clickedAnswer(id) {
 }
 
 
-function updateAnswerButton(button, answer) {
-    button.innerText = answer.text;
-    if(answer.correct == true) {
-        button.setAttribute("correct", "true");
-    }        
-    else {
-        button.setAttribute("correct", "false");
-    }
-
-    button.disabled = false;
-
-    button.classList.remove("wrong");
-    button.classList.remove("right");
-    button.classList.remove("rightforcorrectdisabled");
-
-}
 
 // // pozvana funkcija koja radi nesto ali nema return
 // funkcija();
