@@ -116,12 +116,14 @@ function displayAnswers(questionToDisplay) {
         let allButtonsFromAnswers = allButtonsContainer.children;
 
         for (i = 0; i < allButtonsFromAnswers.length; i++) {
+            
+
             allButtonsFromAnswers[i].classList.remove('right');
             allButtonsFromAnswers[i].classList.remove('wrong');
             allButtonsFromAnswers[i].classList.remove('rightforcorrectdisabled');
             allButtonsFromAnswers[i].disabled = false;
             allButtonsFromAnswers[i].removeAttribute("correct","true");
-
+        
         }
 
     }
