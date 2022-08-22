@@ -106,7 +106,7 @@ function resetQuiz(){
        {resultMessage.innerText = "Good job!"}
     
     else if (correctAnswerTotal <= 6)
-       {resultMessage.innerText = "Study more idjit!"}
+       {resultMessage.innerText = "Study more!"}
     correctAnswerTotal = 0;
     wrongAnswerTotal = 0;
     currentQuestionIndex = 0;
