@@ -3,11 +3,13 @@ body{
     background-image: url(images/bcg.jpg);
     background-size: 100% 100vh;
     background-position: cover;
-    background-repeat:no-repeat;
+    background-repeat: repeat-y;
     background-color: rgb(49, 48, 48);
-    max-height: 120vh;
+    min-height: 100vh - 160px;
     margin: auto;
     padding: 0%;
+    margin-bottom: 0px;
+    margin-top: 160px;
 }
 
 
@@ -39,7 +41,6 @@ html {
     min-height: 60vh;
     position: relative;
     text-align: center;
-    margin-top: 160px;
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
 
@@ -89,6 +90,10 @@ html {
 
 }
 
+#startQuizButton{
+    padding:30px;
+
+}
 
 button:disabled{
     background-color:rgba(73, 84, 95, 0.603);
@@ -149,7 +154,6 @@ button:disabled:hover{
     max-width: 800px;
     height: 60vh;
     margin: auto;
-    margin-top: 160px;
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
 }
@@ -441,3 +445,4 @@ a{
 
 }
 }
+
