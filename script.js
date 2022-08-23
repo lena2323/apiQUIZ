@@ -38,7 +38,6 @@ function chooseDifficulty(difficulty){
 }
 
 async function startQuiz(difficulty){
-
     let url = chooseDifficulty(difficulty);
     let response = await fetch (url);
     data = await response.json();
@@ -80,17 +79,17 @@ function displayAnswers(questionToDisplay) {
      allButtonsFromAnswers[idxArray[3]].innerHTML = questionToDisplay.incorrectAnswers[2];
     }
 
-    function resetButtons(){
-        let allButtonsContainer = document.getElementById("allButtonsContainer")
-        let allButtonsFromAnswers = allButtonsContainer.children;
-        for (i = 0; i < allButtonsFromAnswers.length; i++) {
-            allButtonsFromAnswers[i].classList.remove('right');
-            allButtonsFromAnswers[i].classList.remove('wrong');
-            allButtonsFromAnswers[i].classList.remove('rightforcorrectdisabled');
-            allButtonsFromAnswers[i].disabled = false;
-            allButtonsFromAnswers[i].removeAttribute("correct","true");
-        }
+function resetButtons(){
+    let allButtonsContainer = document.getElementById("allButtonsContainer")
+    let allButtonsFromAnswers = allButtonsContainer.children;
+    for (i = 0; i < allButtonsFromAnswers.length; i++) {
+        allButtonsFromAnswers[i].classList.remove('right');
+        allButtonsFromAnswers[i].classList.remove('wrong');
+        allButtonsFromAnswers[i].classList.remove('rightforcorrectdisabled');
+        allButtonsFromAnswers[i].disabled = false;
+        allButtonsFromAnswers[i].removeAttribute("correct","true");
     }
+}
 
 function resetQuiz(){
     containerForEverything.classList.add('hide');
@@ -98,7 +97,6 @@ function resetQuiz(){
     easyMediumHardContainer.style.display = "none";
     resultContainer.classList.remove('hide');
     startQuizButton.style.display = "block";
-    console.log("aaa");  
     resultText.innerText = "Correct answers: " + correctAnswerTotal + `\n` + "Wrong answers: " + wrongAnswerTotal + `\n` + "Total answered questions:" + (correctAnswerTotal + wrongAnswerTotal);
     
     if (correctAnswerTotal >= 7)
@@ -115,7 +113,6 @@ function showDifficultyChoices() {
     easyMediumHardContainer.style.display= "flex";
     resultContainer.classList.add('hide');
     startQuizButton.style.display = "none";
-
 }
 
 function shuffleArray(array) {
@@ -151,8 +148,6 @@ function clickedAnswer(id) {
     nextQuestionContainer.style.display = "flex";
 }
 
-
-
 function timer(){
     count = configuredCount;
     questionTimerInterval = setInterval(function(){                
@@ -165,31 +160,12 @@ function timer(){
         else {
             clearInterval(questionTimerInterval);
             nextQuestionContainer.style.display = "flex";
-
-
             answerButton0.disabled = true;
             answerButton1.disabled = true;
             answerButton2.disabled = true;
             answerButton3.disabled = true;
-
             count = configuredCount;
         }      
-        
     },
     1000);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
