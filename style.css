@@ -81,7 +81,7 @@ html {
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
     letter-spacing: 0.1em;
-
+    border-radius: 3px;
 }
 
 .allButtons:hover{
@@ -146,7 +146,6 @@ button:disabled:hover{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(95, 95, 97, 0.418);
     max-width: 800px;
     height: 60vh;
     margin: auto;
@@ -172,8 +171,7 @@ button:disabled:hover{
 
 .resultContainer{
   
-    color: rgb(240, 240, 240);
-    width: 400px;
+    min-width: 400px;
     max-height: 150px;
     text-align: center;
     margin: auto;
@@ -182,6 +180,8 @@ button:disabled:hover{
     margin-bottom: 20px;
     margin-top: 20px;
     color: #cae4e6;
+    letter-spacing: 0.1em;
+
 
 }
 
@@ -303,8 +303,8 @@ a span:nth-child(4){
 
 #count{
     font-size: xx-large;
-    color: #a0e9ecce;
-    padding-top: 40px;
+    color: #03e9f4;
+    padding-top: 20px;
 
 }
 
@@ -357,7 +357,7 @@ body{
     justify-content: top;
     padding-left: 0px;
     padding-right: 0px;
-    min-height: 80vh;
+    min-height: 100vh;
     margin-bottom: 20px;
 
 }
@@ -389,6 +389,9 @@ body{
 .startQuizContainer button{
     max-width: 350px;
 }
+.startQuizContainer button a{
+    padding-bottom: 300px;
+}
 
 .resultContainer{
     max-width: 350px;
@@ -416,18 +419,25 @@ a{
 
 .nextQuestionContainer{
     padding-top: 0px;
-    margin-top: -10px;
+    margin-top: 0px;
     backdrop-filter: blur( 4.5px );
+    margin-top: 20px;
 }
 
 
 
 a{
-    padding: 35px 30px;
+    padding: 33px 30px;
 
     width: 300px;
     height: 80px;
    
     
+}
+
+#startQuizButton{
+    padding: 0%;
+    padding-top: 15px;
+
 }
 }
