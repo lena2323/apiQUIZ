@@ -5,11 +5,11 @@ body{
     background-position: cover;
     background-repeat: repeat-y;
     background-color: rgb(49, 48, 48);
-    min-height: 100vh - 160px;
+    min-height: auto;
     margin: auto;
     padding: 0%;
     margin-bottom: 0px;
-    margin-top: 160px;
+    padding-top: 100px;
 }
 
 input,
@@ -314,6 +314,8 @@ button.rightforcorrectdisabled:hover{
 @media only screen and (max-width: 900px){
 
 body{
+    margin-top: 0%;
+    padding-top: 0%;
     background-color: rgba(49, 48, 48, 0);
     background-size: 100% 107vh;
     background-position: cover;
