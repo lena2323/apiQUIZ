@@ -12,7 +12,6 @@ body{
     margin-top: 160px;
 }
 
-
 input,
 textarea,
 button,
@@ -21,7 +20,6 @@ a{
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-
 html {
     scroll-behavior: smooth;
   }
@@ -29,7 +27,6 @@ html {
 #quiz{
     position: absolute;
     margin-top: -100px;
-
 }
 
 .containerForEverything{
@@ -43,7 +40,6 @@ html {
     text-align: center;
     backdrop-filter: blur( 4.5px );
     -webkit-backdrop-filter: blur( 4.5px );
-
 }
 
 .question{
@@ -55,8 +51,6 @@ html {
     padding-top: 40px;
     margin-left: 70px;
     margin-right: 70px;
-    
-    
 }
 
 .allButtonsContainer{
@@ -67,8 +61,6 @@ html {
     justify-content: center;
     padding-bottom: 20px;
     margin-top: 100px;
-
-
 }
 
 .allButtons{
@@ -87,12 +79,10 @@ html {
 
 .allButtons:hover{
     background-color: rgba(90, 105, 119, 0.603);
-
 }
 
 #startQuizButton{
     padding:30px;
-
 }
 
 button:disabled{
@@ -105,28 +95,21 @@ button:disabled:hover{
     background-color:rgba(73, 84, 95, 0.603);
 }
 
-
 .wrong{
     background-color: rgba(199, 64, 64, 0.493);
 }
-
 
 .right{
     background-color: rgb(98, 184, 87);
 }
 
 
-
 .wrong:hover{
     background-color: rgba(199, 64, 64, 0.493);
-
 }
-
-
 
 .right:hover{
     background-color: rgb(98, 184, 87);
-
 }
 
 .nextQuestionContainer{
@@ -139,12 +122,10 @@ button:disabled:hover{
 
 .nextQuestionContainer button{
     background-color: rgb(77,86,98);
-
 }
 
 .nextQuestionContainer button:active{
     background-color: rgba(52, 81, 109, 0.425);
-
 }
 
 .startQuizContainer{
@@ -158,12 +139,9 @@ button:disabled:hover{
     -webkit-backdrop-filter: blur( 4.5px );
 }
 
-
-
 .startQuizContainer button:active{
     background-color: rgba(52, 81, 109, 0.425);
 }
-
 
 .hide{
     display: none;
@@ -174,7 +152,6 @@ button:disabled:hover{
 }
 
 .resultContainer{
-  
     min-width: 400px;
     max-height: 150px;
     text-align: center;
@@ -185,8 +162,6 @@ button:disabled:hover{
     margin-top: 20px;
     color: #cae4e6;
     letter-spacing: 0.1em;
-
-
 }
 
 .resultContainer p {
@@ -194,13 +169,10 @@ button:disabled:hover{
     margin: 0%;
 }
 
-
-
 /******Start quiz button with snake border**********/
 
 a:hover{
     background-color: rgba(62, 62, 65, 0.418);
-
 }
 
 a{
@@ -219,15 +191,13 @@ a{
     margin: auto;
     box-sizing: border-box;
     text-align: center;
-    
 }
-
 
 a span{
     position: absolute;
     display: block;
-    
 }
+
 a span:nth-child(1){
     top: 0;
     left: 0;
@@ -236,6 +206,7 @@ a span:nth-child(1){
     background: linear-gradient(90deg,transparent,#03e9f4);
     animation: animate1 1s linear infinite;
 }
+
 @keyframes animate1{
     0%{
         left: -100%;
@@ -244,6 +215,7 @@ a span:nth-child(1){
         left: 100%;
     }
 }
+
 a span:nth-child(2){
     top: -100%;
     right: 0;
@@ -253,6 +225,7 @@ a span:nth-child(2){
     animation: animate2 1s linear infinite;
     animation-delay: 0.25s;
 }
+
 @keyframes animate2{
     0%{
         top: -100%;
@@ -261,6 +234,7 @@ a span:nth-child(2){
         top: 100%;
     }
 }
+
 a span:nth-child(3){
     bottom: 0;
     right: 0;
@@ -270,6 +244,7 @@ a span:nth-child(3){
     animation: animate3 1s linear infinite;
     animation-delay: 0.50s;
 }
+
 @keyframes animate3{
     0%{
         right: -100%;
@@ -278,7 +253,6 @@ a span:nth-child(3){
         right: 100%;
     }
 }
-
 
 a span:nth-child(4){
     bottom: -100%;
@@ -289,6 +263,7 @@ a span:nth-child(4){
     animation: animate4 1s linear infinite;
     animation-delay: 0.75s;
 }
+
 @keyframes animate4{
     0%{
         bottom: -100%;
@@ -301,7 +276,6 @@ a span:nth-child(4){
 .easyMediumHardContainer button{
     margin: 10px;
     letter-spacing: 0.2em;
-
 }
 /************Timer************************/
 
@@ -309,16 +283,12 @@ a span:nth-child(4){
     font-size: xx-large;
     color: #03e9f4;
     padding-top: 20px;
-
 }
 
 .rightforcorrectdisabled{
     background-color: rgb(0, 255, 0);
     color: #cae4e6 !important;
-
 }
-
-
 
 .rightforcorrectdisabled:disabled{
     background-color: rgba(3, 185, 3, 0.329);
@@ -326,20 +296,17 @@ a span:nth-child(4){
 
 .rightforcorrectdisabled:disabled{
     background-color: rgba(3, 185, 3, 0.329);
-
 }
 
 button.rightforcorrectdisabled:hover{
     background-color: rgba(3, 185, 3, 0.329);
-
 }
 
 .easyMediumHardContainer{
     display: flex;
     flex-direction: column;
-   margin-bottom: 20px;
-   align-items:center;
-    
+    margin-bottom: 20px;
+    align-items:center;
 }
 
     /****************RESPONSIVE********************/
@@ -350,7 +317,6 @@ body{
     background-color: rgba(49, 48, 48, 0);
     background-size: 100% 107vh;
     background-position: cover;
-
     background-repeat:repeat;
 }
 
@@ -363,9 +329,7 @@ body{
     padding-right: 0px;
     min-height: 100vh;
     margin-bottom: 20px;
-
 }
-
 
 .containerForEverything p{
     padding-bottom: 10px;
@@ -380,8 +344,6 @@ body{
     margin-bottom: 0px;
 }
 
-
-
 .startQuizContainer{
     padding: 0px;
     text-align: center;
@@ -393,13 +355,13 @@ body{
 .startQuizContainer button{
     max-width: 350px;
 }
+
 .startQuizContainer button a{
     padding-bottom: 300px;
 }
 
 .resultContainer{
     max-width: 350px;
-
 }
 
 .allButtons{
@@ -413,12 +375,10 @@ body{
     margin-left: 20px;
     margin-right: 20px;
     font-size: 20px;
-
 }
 
 a{
     width: 350px;
-
 }
 
 .nextQuestionContainer{
@@ -432,7 +392,6 @@ a{
 
 a{
     padding: 33px 30px;
-
     width: 300px;
     height: 80px;
    
@@ -442,7 +401,5 @@ a{
 #startQuizButton{
     padding: 0%;
     padding-top: 15px;
-
 }
 }
-
