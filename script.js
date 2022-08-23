@@ -18,7 +18,6 @@ let configuredCount = 10;
 let startQuizContainer = document.getElementById("startQuizContainer");
 let containerForEverything =  document.getElementById("containerForEverything"); 
 let questionInTheQuiz = document.getElementById("questionInTheQuiz");
-let startQuizButtonToChange = document.getElementById("startQuizButtonToChange");
 let startQuizButton = document.getElementById("startQuizButton");
 let nextQuestionContainer = document.getElementById("nextQuestionContainer");
 let nextQuestionButton = document.getElementById("nextQuestionButton");

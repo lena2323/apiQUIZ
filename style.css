@@ -358,10 +358,12 @@ body{
     padding: 0%;
     margin: auto;
     text-align: center;
-    justify-content: center;
+    justify-content: top;
     padding-left: 0px;
     padding-right: 0px;
-    min-height: 100vh;
+    min-height: 80vh;
+    margin-bottom: 20px;
+
 }
 
 
@@ -420,7 +422,7 @@ a{
     padding-top: 0px;
     margin-top: -10px;
     backdrop-filter: blur( 4.5px );
-
+    
 }
 
 }
